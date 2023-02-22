@@ -7,7 +7,7 @@ extension Ether {
     /// A dictionary of headers to apply to a `URLRequest`.
     public typealias Headers = [String: String]
     /// A dictionary of parameters to apply to a `URLRequest`.
-    public typealias Parameters = [String: String]
+    public typealias Parameters = [String: LosslessStringConvertible]
     
     /// An enum defining preferred behavior of error messaging alerts.
     /// Currently/primarily used for Authentication/Login Status alerts.

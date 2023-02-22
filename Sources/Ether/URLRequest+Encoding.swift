@@ -31,7 +31,7 @@ internal extension URLRequest {
         
         // Add the parameters as URLQueryItems to the URLComponents object.
         components?.queryItems = parameters.map { (key, value) in
-            URLQueryItem(name: key, value: value)
+            URLQueryItem(name: key, value: "\(value)")
         }
         
         // Build a URL from the URLComponents object.
