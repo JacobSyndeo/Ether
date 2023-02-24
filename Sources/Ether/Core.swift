@@ -25,10 +25,10 @@ public struct Ether {
     ///   - type: The `Decodable` type you expect to receive back.
     ///   - parameters: A collection of key-value pairs to use as parameters. Defaults to empty.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``AlertBehavior/never``.
+    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
     ///
-    /// Compare with ``Ether/EtherRoute/get(type:parameters:showAlertIfFailed:)``, a convenience version of this method.
+    /// Compare with ``Ether/EtherRoute/get(type:parameters:decoder:showAlertIfFailed:)``, a convenience version of this method.
     public static func get<T>(route: any Route,
                               type: T.Type,
                               parameters: Parameters = [:],
@@ -86,10 +86,10 @@ public struct Ether {
     ///   - encoding: The encoding to use. Defaults to ``ParameterEncoding/gZip``.
     ///   - responseFormat: The `Decodable` type we expect to receive back. Ether will attempt to decode the HTTP response into this type. If no type is provided, the response struct will contain raw, undecoded data.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``AlertBehavior/never``.
+    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: A ``Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
-    /// Compare with ``Ether/EtherRoute/post(with:usingEncoding:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    /// Compare with ``Ether/EtherRoute/post(with:usingEncoding:responseFormat:decoder:showAlertIfFailed:)``, a convenience version of this method.
     @discardableResult
     public static func post<T>(route: any Route,
                                with data: RequestBody,
@@ -114,10 +114,10 @@ public struct Ether {
     ///   - formItems: The form items to include in the request. The key is the name of the form item, and the value is a `FormValue` that specifies the value of the form item.
     ///   - responseFormat: The type of data to bundle in the response. Defaults to `DummyTypeUsedWhenNoDecodableIsRequested`.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``AlertBehavior/never``.
+    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/EtherRoute/postMultipartForm(formItems:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    /// Compare with ``Ether/EtherRoute/postMultipartForm(formItems:responseFormat:decoder:showAlertIfFailed:)``, a convenience version of this method.
     @discardableResult
     public static func postMultipartForm<T>(route: any Route,
                                             formItems: [String: FormValue] = [:],
@@ -191,11 +191,11 @@ public struct Ether {
     ///   - body: The ``Ether/Ether/RequestBody`` to use. Defaults to `nil`.
     ///   - responseFormat: The type of data to bundle in the response.
     ///   - encoding: The encoding to use. Defaults to ``ParameterEncoding/urlQuery``.
-    ///   - showAlertIfFailed: An ``AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``AlertBehavior/never``.
+    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/EtherRoute/request(method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, a convenience version of this method.
+    /// Compare with ``Ether/EtherRoute/request(method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``, a convenience version of this method.
     @discardableResult
     public static func request<T>(route: any Route,
                                   method: Method,

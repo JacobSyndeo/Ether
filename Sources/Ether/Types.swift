@@ -51,7 +51,7 @@ extension Ether {
         case urlQuery
         /// Encoding of parameters as JSON in the HTTP request's body.
         case json
-        /// Encoding of parameters as JSON in the HTTP request's body.
+        /// Encoding of parameters as gZipped JSON in the HTTP request's body.
         case gZip
         /// Custom encoding. The caller is expected to manually provide a ``Ether/Ether/RequestBody`` for the request, and to provide a MIME type string (corresponding to the provided body) here.
         case custom(contentType: String)

@@ -4,11 +4,13 @@ public protocol EtherTypedRoute: EtherRoute {
 //    associatedtype SingularType: Decodable
 //    associatedtype PluralType: Decodable
     
+    /// The `Decodable` type that the route's result is expected to decode to.
     associatedtype DecodedType: Decodable
 }
 
 extension Ether {
     /// A typealias for ``EtherTypedRoute``.
+    ///
     /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
     /// This lets it be accessed as `Ether.TypedRoute`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
     /// - SeeAlso: ``EtherTypedRoute``
@@ -26,7 +28,7 @@ extension EtherTypedRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
     ///
-    /// Compare with ``Ether/Ether/get(route:type:parameters:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:showAlertIfFailed:)``, the main version of this method.
     public func get(parameters: Ether.Parameters = [:],
                     /*cacheBehavior: CacheBehavior = .neverUse,*/ // TODO: Get caching working!
                     decoder: JSONDecoder = JSONDecoder(),
@@ -49,7 +51,7 @@ extension EtherTypedRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
-    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
     public func post(with data: Ether.RequestBody,
                      usingEncoding encoding: Ether.ParameterEncoding = .gZip,
                      decoder: JSONDecoder = .init(),
@@ -71,7 +73,7 @@ extension EtherTypedRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
     public func postMultipartForm(formItems: [String: Ether.FormValue] = [:],
                                   decoder: JSONDecoder = .init(),
                                   showAlertIfFailed: Ether.AlertBehavior = .never) async throws -> Ether.Response<DecodedType> {
@@ -95,7 +97,7 @@ extension EtherTypedRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``, the main version of this method.
     public func request(method: Ether.Method,
                         headers: Ether.Headers = [:],
                         parameters: Ether.Parameters = [:],

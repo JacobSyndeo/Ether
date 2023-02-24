@@ -20,19 +20,23 @@ public protocol EtherRoute {
     var asURL: URL { get throws }
 }
 
-// Exists so that we can conform the convenience functions that ASK for a type to use this. Typed routes don't need their functions to ask!
+/// This exists so that we can conform the convenience functions that ASK for a type to use this.
+///
+/// Typed routes don't need their functions to ask for a type to decode to; that's provided by the ``Ether/EtherTypedRoute`` itself.
 public protocol EtherTypelessRoute: EtherRoute {
     
 }
 
 extension Ether {
     /// A typealias for ``EtherRoute``.
+    ///
     /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
     /// This lets it be accessed as `Ether.Route`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
     /// - SeeAlso: ``EtherRoute``
     public typealias Route = EtherRoute
     
     /// A typealias for ``EtherTypelessRoute``.
+    ///
     /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
     /// This lets it be accessed as `Ether.TypelessRoute`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
     /// - SeeAlso: ``EtherTypelessRoute``
@@ -79,7 +83,7 @@ extension EtherRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
     ///
-    /// Compare with ``Ether/Ether/get(route:type:parameters:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:showAlertIfFailed:)``, the main version of this method.
     public func get<T>(type: T.Type,
                        parameters: Ether.Parameters = [:],
                        /*cacheBehavior: CacheBehavior = .neverUse*/ // TODO: Get caching working!
@@ -103,7 +107,7 @@ extension EtherRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
-    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
     @discardableResult
     public func post<T>(with data: Ether.RequestBody,
                         usingEncoding encoding: Ether.ParameterEncoding = .gZip,
@@ -127,7 +131,7 @@ extension EtherRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
     @discardableResult
     public func postMultipartForm<T>(formItems: [String: Ether.FormValue] = [:],
                                      responseFormat: T.Type = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
@@ -153,7 +157,7 @@ extension EtherRoute {
     ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``, the main version of this method.
     @discardableResult
     public func request<T>(method: Ether.Method,
                            headers: Ether.Headers = [:],
