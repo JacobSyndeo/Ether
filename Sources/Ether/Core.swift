@@ -90,6 +90,7 @@ public struct Ether {
     /// - Returns: A ``Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
     /// Compare with ``Ether/EtherRoute/post(with:usingEncoding:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func post<T>(route: any Route,
                                with data: RequestBody,
                                usingEncoding encoding: ParameterEncoding = .gZip,
@@ -117,6 +118,7 @@ public struct Ether {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/EtherRoute/postMultipartForm(formItems:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func postMultipartForm<T>(route: any Route,
                                             formItems: [String: FormValue] = [:],
                                             responseFormat: T.Type = _DummyTypeUsedWhenNoDecodableIsRequested.self,
@@ -194,6 +196,7 @@ public struct Ether {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/EtherRoute/request(method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func request<T>(route: any Route,
                                   method: Method,
                                   headers: Headers = [:],

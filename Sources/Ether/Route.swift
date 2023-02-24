@@ -104,6 +104,7 @@ extension EtherRoute {
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
     /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    @discardableResult
     public func post<T>(with data: Ether.RequestBody,
                         usingEncoding encoding: Ether.ParameterEncoding = .gZip,
                         responseFormat: T.Type = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
@@ -127,6 +128,7 @@ extension EtherRoute {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:showAlertIfFailed:)``, the main version of this method.
+    @discardableResult
     public func postMultipartForm<T>(formItems: [String: Ether.FormValue] = [:],
                                      responseFormat: T.Type = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
                                      decoder: JSONDecoder = .init(),
@@ -152,6 +154,7 @@ extension EtherRoute {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, the main version of this method.
+    @discardableResult
     public func request<T>(method: Ether.Method,
                            headers: Ether.Headers = [:],
                            parameters: Ether.Parameters = [:],

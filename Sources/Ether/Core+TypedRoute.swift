@@ -40,6 +40,7 @@ extension Ether {
     /// - Returns: A ``Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
     /// Compare with ``Ether/EtherRoute/post(with:usingEncoding:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func post<T: TypedRoute>(typedRoute: T,
                                            with data: RequestBody,
                                            usingEncoding encoding: ParameterEncoding = .gZip,
@@ -64,6 +65,7 @@ extension Ether {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/EtherRoute/postMultipartForm(formItems:responseFormat:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func postMultipartForm<T: TypedRoute>(typedRoute: T,
                                                         formItems: [String: FormValue] = [:],
                                                         decoder: JSONDecoder = JSONDecoder(),
@@ -90,6 +92,7 @@ extension Ether {
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
     /// Compare with ``Ether/EtherRoute/request(method:headers:parameters:body:responseFormat:usingEncoding:showAlertIfFailed:)``, a convenience version of this method.
+    @discardableResult
     public static func request<T:TypedRoute>(typedRoute: T,
                                              method: Method,
                                              headers: Headers = [:],
