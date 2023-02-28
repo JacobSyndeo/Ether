@@ -9,6 +9,7 @@ import UIKit
 import Gzip
 import OSLog
 
+/// The core of Ether. All the core functions and types are namespaced under this.
 public struct Ether {
     /// Formatted [domain, [headerKey, headerValue]]
     public static var authHeaders: [String: [String: String]]?

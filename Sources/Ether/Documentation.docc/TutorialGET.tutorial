@@ -1,0 +1,28 @@
+@Tutorial(time: 20) {
+    @Intro(title: "Your First GET Request") {
+        In this tutorial, you'll discover how easy it is to make requests using Ether.
+        
+<!--        @Image(source: <#file#>, alt: "<#accessible description#>")-->
+    }
+    
+    @Section(title: "Getting Started") {
+        @ContentAndMedia {
+            [Content and Media go here]
+            
+<!--            @Image(source: <#file#>, alt: "<#accessible description#>")-->
+        }
+        
+        @Steps {
+            @Step {
+                5: arstnioarsnteiarniteoarsneniarte
+            }
+            
+            @Step {
+                arstnioarsnteiarniteoarsneniarteastnearsto
+                rst
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-1-Import.swift", previousFile: "TutorialNewFile.swift")
+            }
+        }
+    }
+}

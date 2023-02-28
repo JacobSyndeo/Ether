@@ -20,34 +20,20 @@ public protocol EtherRoute {
     var asURL: URL { get throws }
 }
 
-/// This exists so that we can conform the convenience functions that ASK for a type to use this.
-///
-/// Typed routes don't need their functions to ask for a type to decode to; that's provided by the ``Ether/EtherTypedRoute`` itself.
-public protocol EtherTypelessRoute: EtherRoute {
-    
-}
-
 extension Ether {
-    /// A typealias for ``EtherRoute``.
+    /// A typealias for ``EtherRoute``, namespaced under ``Ether/Ether``.
     ///
     /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
-    /// This lets it be accessed as `Ether.Route`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
+    /// This lets it be accessed as `Ether.Route`, much like how ``Ether/Ether/Method`` is accessible as a type namespaced under ``Ether/Ether``, as well as other subtypes.
     /// - SeeAlso: ``EtherRoute``
     public typealias Route = EtherRoute
-    
-    /// A typealias for ``EtherTypelessRoute``.
-    ///
-    /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
-    /// This lets it be accessed as `Ether.TypelessRoute`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
-    /// - SeeAlso: ``EtherTypelessRoute``
-    public typealias TypelessRoute = EtherTypelessRoute
 }
 
 /// The following is clearly based on a trick from the networking-libary-that-shall-not-be-named.
 /// We can conform String and URL to our type in order to get easy URL conversion for the former, and drop-in support for the latter, without maintaining separate method signatures for each, or using enums.
 
 // Conform String to Route, so that we can use it.
-extension String: Ether.TypelessRoute {
+extension String: Ether.Route {
     /// Returns a URL if `self` represents a valid URL string that conforms to [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt) or throws an `AFError`.
     ///
     /// - throws: An ``Ether/Ether/Error/badURL(_:)`` if `self` is not a valid URL string.
@@ -60,7 +46,7 @@ extension String: Ether.TypelessRoute {
 }
 
 // Conform URL to Route, so that we can use it.
-extension URL: Ether.TypelessRoute {
+extension URL: Ether.Route {
     /// Returns self.
     public var asURL: URL {
         get throws {

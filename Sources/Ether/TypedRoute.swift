@@ -9,10 +9,10 @@ public protocol EtherTypedRoute: EtherRoute {
 }
 
 extension Ether {
-    /// A typealias for ``EtherTypedRoute``.
+    /// A typealias for ``EtherTypedRoute``, namespaced under ``Ether/Ether``.
     ///
     /// Since it's a protocol, it requires a global namespace, but typealiases can be namespaced within other types.
-    /// This lets it be accessed as `Ether.TypedRoute`, much like how ``Method`` is accessible as `Ether.Method`, as well as other subtypes.
+    /// This lets it be accessed as `Ether.TypedRoute`, much like how ``Ether/Ether/Method`` is accessible as a type namespaced under ``Ether/Ether``, as well as other subtypes.
     /// - SeeAlso: ``EtherTypedRoute``
     public typealias TypedRoute = EtherTypedRoute
 }

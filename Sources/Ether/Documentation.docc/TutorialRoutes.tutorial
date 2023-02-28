@@ -1,0 +1,160 @@
+@Tutorial(time: 10) {
+    @Intro(title: "Setting Up Your Routes") {
+        In this tutorial, you'll learn how to set up your `Routes` file, which provides a clean and organized way to model your API's endpoints in Swift, allowing for easy, reliable access.
+        
+        If you're reading this, we'll assume you have already created a project and successfully imported ``Ether``.
+        
+        We'll be using the [Star Wars API](https://swapi.dev/) for this tutorial.
+        
+        s@Image(source: xwing.jpeg, alt: "A photo of X-wing Starfighters from Star Wars.")
+
+    }
+    
+    @Section(title: "Creating your Routes enum") {
+        @ContentAndMedia {
+            We'll start by creating an enum to hold and manage our routes.
+            
+            @Image(source: web.png, alt: "A spiderweb")
+        }
+        
+        @Steps {
+            @Step {
+                Create a new Swift file in your project, naming it `SWRoutes.swift`.
+                
+                A good habit is to name this file and enum in a way that makes it clear *which* API you're building routes for. Since this is the Star Wars API, we use the "SW" prefix.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialNewFile.swift")
+            }
+            
+            @Step {
+                In your new file, import ``Ether``, and declare an `enum` called `SWRoutes`, conforming to the ``Ether/Ether/Route`` protocol.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-1-Import.swift", previousFile: "TutorialNewFile.swift")
+            }
+            
+            @Step {
+                Add a case for the `people` endpoint, accepting an integer value.
+                
+                We do this because the URL [https://swapi.dev/people/1](https://swapi.dev/people/1) has an integer at the end, which is the ID of the person. We therefore model our route as a case that accepts an integer.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-2-Building.swift")
+            }
+
+            @Step {
+                Now, let's add conformance to the ``Ether/Ether/Route`` protocol by adding ``Ether/EtherRoute/asURL`` as a computed URL property.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-3-Protocol.swift")
+            }
+            
+            @Step {
+                Add a string variable for the hostname, setting it to https://swapi.dev/
+                
+                This will help build URLs, as it'll be common to every URL this route collection generates.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-4-Host.swift")
+            }
+
+            @Step {
+                Add a variable to hold a URL string.
+
+                This is convenient, as it means we only have to do the conversion to the `URL` type in one place.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-5-URLString.swift")
+            }
+
+            @Step {
+                Add a `switch` statement, which we'll use to cover each possible enum case.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-6-Switch.swift")
+            }
+
+            @Step {
+                Add a case for `people`, capturing the associated `Int` as "personID".
+
+                We use "personID" here because in this case, the integer represents the person ID. If it represented something else, we would give this variable a different name, more appropriate to what it represents in the API.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-7-Case.swift")
+            }
+
+            @Step {
+                Build the URL string by combining `host` with `"/api/people/"` and `personID`.
+
+                This, of course, results in "https://swapi.dev/people/_" (where _ represents the Int provided).
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-8-Body.swift")
+            }
+
+            @Step {
+                Finally, let's return the URL, satisfying the protocol.
+                
+                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-9-Return.swift")
+            }
+
+<!--            @Step {-->
+<!--                Now let's go a step further, and make the integer optional.-->
+<!--                -->
+<!--                This is because the Star Wars API's people endpoint can actually work without an integer provided: [https://swapi.dev/people/](https://swapi.dev/people/) This is commonly referred to as a "root" endpoint, and is a common pattern in REST APIs. In this case, it's a list of all people in the Star Wars universe. It's a good idea to use the features of Swift to model your API as closely as possible, including optional values.-->
+<!--                -->
+<!--                @Code(name: "SWRoutes.swift", file: "TutorialRoutes-1-3-Optional.swift")-->
+<!--            }-->
+        }
+    }
+    
+    @Assessments {
+        @MultipleChoice {
+            Suppose you had to model the URL https://swapi.dev/api/planets/1 . Suppose also that the endpoint worked without a planet ID, like https://swapi.dev/api/planets/ . How would you model this?
+            
+            @Choice(isCorrect: false) {
+                case planets()
+                
+                @Justification(reaction: "Try again!") {
+                    Remember, this endpoint can accept parameters.
+                }
+            }
+            
+            @Choice(isCorrect: false) {
+                case planets(Int)
+                
+                @Justification(reaction: "Try again!") {
+                    Remember, this endpoint doesn't require parameters.
+                }
+            }
+                    
+            @Choice(isCorrect: true) {
+                case planets(Int?)
+                
+                @Justification(reaction: "That's right!") {
+                    This endpoint can optionally accept an integer parameter, so this is the correct way to model it!
+                }
+            }
+        }
+        
+        @MultipleChoice {
+            Suppose you had to model the URL https://swapi.dev/api/ , an API endpoint that doesn't accept any parameters. How would you model this?
+            
+            @Choice(isCorrect: true) {
+                case api
+                
+                @Justification(reaction: "That's right!") {
+                    The endpoint doesn't accept any parameters, so none should be accepted by the enum, either.
+                }
+            }
+                    
+            @Choice(isCorrect: false) {
+                case api(Int)
+                
+                @Justification(reaction: "Try again!") {
+                    Remember, this endpoint doesn't accept any parameters.
+                }
+            }
+            
+            @Choice(isCorrect: false) {
+                case api(Int?)
+                
+                @Justification(reaction: "Try again!") {
+                    Remember, this endpoint doesn't accept any parameters, even optionally.
+                }
+            }
+        }
+    }
+}

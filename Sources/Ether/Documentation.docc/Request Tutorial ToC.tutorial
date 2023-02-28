@@ -1,0 +1,30 @@
+@Tutorials(name: "Ether") {
+    @Intro(title: "Welcome to Ether!") {
+        Welcome to Ether, the framework that makes working with network calls—and the data they return—not just bearable, but easy.
+        _Dare I say fun, even?_ Let's explore together and see!
+        
+        @Image(source: web.png, alt: "A spiderweb")
+    }
+    
+    @Chapter(name: "Introduction") {
+        <#text#>
+        
+<!--        @Image(source: <#file#>, alt: "<#accessible description#>")-->
+        
+        @TutorialReference(tutorial: "doc:<#tutorial name#>")
+    }
+    
+    @Chapter(name: "Setting Up Routes") {
+        Learn how to use Ether's simple-but-powerful ``Ether/Ether/Route`` system to your benefit. 
+        
+        <!--        @Image(source: <#file#>, alt: "<#accessible description#>")-->
+        
+        @TutorialReference(tutorial: "doc:TutorialRoutes")
+    }
+    
+<!--    @Chapter(name: "Your First GET Request") {-->
+<!--        <#text#>-->
+<!--        -->
+<!--        @TutorialReference(tutorial: "doc:TutorialGET")-->
+<!--    }-->
+}a
