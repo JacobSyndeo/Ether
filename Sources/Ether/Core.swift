@@ -280,7 +280,7 @@ public struct Ether {
         // Fire off the request!
         let data: Data
         let response: URLResponse
-        if #available(iOS 15.0, *) {
+        if #available(iOS 15.0, macOS 12.0, watchOS 8.0, tvOS 15, macCatalyst 15, *) {
             (data, response) = try await session.data(for: request, delegate: nil)
         } else {
             (data, response) = try await withCheckedThrowingContinuation({ continuation in
