@@ -1,11 +1,8 @@
 # ``Ether``
 
-The framework that makes working with network calls—and the data they return—not just bearable, but easy.
-_Dare I say fun, even?_ See for yourself!
+Welcome to easy, clean, Swifty networking!
 
-## Overview
-
-Let's say you want to go fetch a `Blade` with ID `1`.
+Let's say you want to go fetch an instance of `Blade` with ID `1`.
 
 Normally, you'd write some code looking like this:
 ```swift
@@ -16,64 +13,53 @@ request.httpMethod = "GET"
 
 let task = URLSession.shared.dataTask(with: request) { data, response, error in
     guard error == nil else {
-        Task {
-            await MainActor.run {
-                UIAlertController.showBasicAlert("Error", message: "An error occurred while loading the data.")
-            }
-        }
+        // Handle error…
         return
     }
     
     do {
-        if let blade = try JSONDecoder().decode(Blade.self, from: data) {
-            // Finally use the data
+        if let pyra = try JSONDecoder().decode(Blade.self, from: data) {
+            // It's about time!
         }
     } catch {
-        Task {
-            await MainActor.run {
-                UIAlertController.showBasicAlert("Decoding Error", message: "An error occurred while decoding the data.")
-            }
-        }
+        // Handle error…
     }
 }
 
 task.resume()
 ```
 
-_…Yikes._ Who wants to deal with that? Are we cavemen??
-
-(It's a similar situation with `POST`ing data, but even more complex.)
-
-Surely there's a better way to do this, right?
+_…Yikes._ Are we cavemen?? Surely we can do better.
 
 ## GET
-Enter Ether:
+Let's replace this GET request using Ether:
 ```swift
-let blade = await Ether.get(route: Routes.blade(id: 1),
-                            type: Blade.self)
+let pyra = await Ether.get(route: Routes.blade(id: 1),
+                                  type: Blade.self)
 ```
 
 Yep, Ether will not only perform the request for you, in one call, using async/await, but it will even decode the result into the `Decodable` type you want to use.
 
 ## POST
-What about `POST`s, then?
+What about `POST`s?
 ```swift
-try? await Ether.post(route: Routes.blade,
-                      with: blade)
+try? await Ether.post(route: Routes.time,
+                      with: reyn)
 ```
 Dead simple.
 
 ## Custom Requests
 
-Okay, but what about those times when you need to send a `TRACE` request the server, using a dictionary _without_ a corresponding struct, _AND_ it needs GZip encoding?
+Okay, but what about those times when you need to send a `PUT` request the server, using a dictionary _without_ a corresponding struct, _AND_ it needs GZip encoding?
 
 …sounds _awfully_ contrived, but hey, Ether's got you covered here as well:
 
 ```swift
-let result = try? await Ether.request(route: Routes.echo,
-                                      method: .trace,
-                                      parameters: ["marco": "polo"],
-                                      usingEncoding: .gZip)
+let result = try? await Ether.request(route: Routes.locations,
+                                      method: .put,
+                                      parameters: ["Dunban": "over there"],
+                                      usingEncoding: .gZip,
+                                      showAlertIfFailed: .ifUserHasntMuted)
 ```
 
 Enjoy!
