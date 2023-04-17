@@ -20,7 +20,7 @@ Ether is designed to solve these problems:
 - **It's easy to understand**. Ether is designed to be easy to understand. It follows Swift's "progressive disclosure" design pattern, where you only need to learn about the features you need. I've also put a lot of effort into making the documentation clear and easy to understand.
 - **It's lightweight**. Ether is designed to be lightweight. It relies on Swift's built-in `URLSession` and `JSONEncoder`/`JSONDecoder` types, and it doesn't require a lot of boilerplate code or setup.
 - **Full Swift Concurrency support**. Ether is designed to support Swift Concurrency. It uses async/await, which makes it easier to use and understand.
-- **It's generic**. Ether is designed to be generic. It can be used with any type that conforms to `Codable`, which makes it easier to use. Conforming to ``Fetchable` provides even more features.
+- **It's generic**. Ether is designed to be generic. It can be used with any type that conforms to `Codable`, which makes it easier to use. Conforming to `Fetchable` provides even more features.
 - **It uses Swift errors**. Ether properly handles errors, including network errors and HTTP errors, and throws them as Swift errors.
 - **It's open-source**. Ether is open source! It's free to use, and anyone can contribute to it.
 
