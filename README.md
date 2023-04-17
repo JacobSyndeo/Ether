@@ -4,9 +4,9 @@ Ether is a networking library for Swift. It is designed to be delightful to use 
 
 ## Why another networking library?
 
-With so many networking libraries out there, why did we make Ether?
+With so many networking libraries out there, why did I make Ether?
 
-After exploring and trying many networking libraries, we found that they all had some problems:
+After exploring and trying many networking libraries, I found that they all had some problems:
 
 - **They're overcomplicated**. Most networking libraries have a complicated API that is hard to understand and use. Often, you have to chain together a lot of methods and properties, which makes the code hard to read and understand.
 - **They feel heavy**. Most networking libraries feel heavy, requiring a lot of boilerplate code and a lot of setup.
@@ -17,12 +17,12 @@ After exploring and trying many networking libraries, we found that they all had
 Ether is designed to solve these problems:
 
 - **It's easy to use**. Ether is designed to be easy to use, with useful defaults and a simple API.
-- **It's easy to understand**. Ether is designed to be easy to understand. It follows Swift's "progressive disclosure" design pattern, where you only need to learn about the features you need. We've also put a lot of effort into making the documentation clear and easy to understand.
+- **It's easy to understand**. Ether is designed to be easy to understand. It follows Swift's "progressive disclosure" design pattern, where you only need to learn about the features you need. I've also put a lot of effort into making the documentation clear and easy to understand.
 - **It's lightweight**. Ether is designed to be lightweight. It relies on Swift's built-in `URLSession` and `JSONEncoder`/`JSONDecoder` types, and it doesn't require a lot of boilerplate code or setup.
 - **Full Swift Concurrency support**. Ether is designed to support Swift Concurrency. It uses async/await, which makes it easier to use and understand.
 - **It's generic**. Ether is designed to be generic. It can be used with any type that conforms to `Codable`, which makes it easier to use. Conforming to ``Fetchable` provides even more features.
 - **It uses Swift errors**. Ether properly handles errors, including network errors and HTTP errors, and throws them as Swift errors.
-<!-- - **It's open-source**. Ether is open source! It's free to use, and anyone can contribute to it. -->
+- **It's open-source**. Ether is open source! It's free to use, and anyone can contribute to it.
 
 Furthermore, Ether has some features that you won't find in other networking libraries:
 
