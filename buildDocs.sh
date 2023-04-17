@@ -5,4 +5,5 @@ swift package --allow-writing-to-directory ./docs \
               --disable-indexing \
               --transform-for-static-hosting \
               --hosting-base-path / \
-              --output-path ./docs
+              --output-path ./docs \
+              --include-extended-types

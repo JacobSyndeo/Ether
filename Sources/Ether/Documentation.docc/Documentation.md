@@ -34,8 +34,8 @@ _…Yikes._ Are we cavemen?? Surely we can do better.
 ## GET
 Let's replace this GET request using Ether:
 ```swift
-let pyra = await Ether.get(route: Routes.blade(id: 1),
-                                  type: Blade.self)
+let pyra = try? await Ether.get(route: Routes.blade(id: 1),
+                                type: Blade.self)
 ```
 
 Yep, Ether will not only perform the request for you, in one call, using async/await, but it will even decode the result into the `Decodable` type you want to use.
