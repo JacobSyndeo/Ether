@@ -32,8 +32,9 @@ let package = Package(
         
         // 🎆 Ether
         .target(name: "Ether",
-                dependencies: [.product(name: "Gzip", package: "GzipSwift")],
-                swiftSettings: [.unsafeFlags(["-emit-extension-block-symbols"])]),
+                dependencies: [.product(name: "Gzip", package: "GzipSwift")]
+//                swiftSettings: [.unsafeFlags(["-emit-extension-block-symbols"])]
+               ),
         .testTarget(
             name: "EtherTests",
             dependencies: ["Ether",
