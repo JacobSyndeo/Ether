@@ -32,7 +32,7 @@ Furthermore, Ether has some features that you won't find in other networking lib
 
 ### Installation
 
-Ether is available through Swift Package Manager. To install it, simply add the following line to your `Package.swift` file:
+Ether is available through Swift Package Manager. To install it, simply add the following `.package` line to your `Package.swift` file:
 
 ```swift
 dependencies: [
