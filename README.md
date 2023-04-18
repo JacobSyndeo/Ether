@@ -42,7 +42,7 @@ dependencies: [
 
 ## Documentation
 
-For more information, check out the [documentation](https://ether.jacobsyndeo.app)!
+For more information, check out the [documentation](https://ether.jacobpritchett.app/documentation/ether)!
 
 <!-- ## Demo
 
