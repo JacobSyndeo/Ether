@@ -8,6 +8,8 @@ import Foundation
 ///
 /// The fullURL variable on the enum type would then be a computed property that would generate the URLs `https://domain.com/home` and `https://domain.com/users/1`, respectively.
 ///
+/// For further convenience, both ``String`` and ``URL`` are automatically conformed to this, so you can pass them directly into functions expecting `Route`s.
+///
 /// Typealiased to ``Ether/Ether/Route`` for better namespacing.
 ///
 /// - SeeAlso: ``Ether/Ether/Route``
@@ -59,7 +61,7 @@ extension URL: Ether.Route {
 // I'd normally call this an extension on Ether.Route, but the current version of Swift DocC can't find these functions unless I make this extension on the non-typealiased version, EtherRoute.
 // Thankfully, the typealiased version gets full access to these functions, so it makes no real-world difference.
 // Additionally, DocC can even find the functions on the typealiased Ether.Route if I define the extension this way!
-extension EtherRoute {
+extension Ether.Route {
     /// Fires off a GET request to fetch data, using the current ``Ether/Ether/Route`` instance.
     ///
     /// - Parameters:

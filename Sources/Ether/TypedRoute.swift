@@ -1,5 +1,10 @@
 import Foundation
 
+/// An extension of ``EtherRoute`` that allows routes to declare associated types, corresponding to the type to which the route's contents decode.
+///
+/// If set up as a `EtherTypedRoute`, you'd set `Routes.user(1)` to have its ``Ether/EtherTypedRoute/DecodedType`` set to `User`.
+/// This lets you call simpler/safer versions of the core functions, by omitting the `type:` parameter at the call location.
+/// For example, ``EtherTypedRoute/get(parameters:decoder:showAlertIfFailed:)`` is only possible with `EtherTypedRoute`, which provides the type information to the function.
 public protocol EtherTypedRoute: EtherRoute {
 //    associatedtype SingularType: Decodable
 //    associatedtype PluralType: Decodable

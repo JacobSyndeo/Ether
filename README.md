@@ -31,6 +31,28 @@ Furthermore, Ether has some features that you won't find in other networking lib
 
 ## Getting started
 
+### Installation
+
+Ether is available through Swift Package Manager. To install it, simply add the following line to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/JacobSyndeo/Ether.git", from: "1.0.0")
+]
+```
+
+## Documentation
+
+For more information, check out the [documentation](https://ether.jacobsyndeo.app)!
+
+<!-- ## Demo
+
+You can find a demo app in the `Demo` directory. -->
+
+<!-- ## Examples
+
+Here are some examples of what Ether can do.
+
 Let's say you want to go fetch an instance of `Blade` with ID `1`.
 
 Normally, you'd write some code looking like this:
@@ -91,4 +113,4 @@ let result = try? await Ether.request(route: Routes.locations,
                                       showAlertIfFailed: .ifUserHasntMuted)
 ```
 
-Enjoy!
+Enjoy! -->

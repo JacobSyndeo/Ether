@@ -2,69 +2,18 @@
 
 Welcome to easy, clean, Swifty networking!
 
-Let's say you want to go fetch an instance of `Blade` with ID `1`.
+## Welcome!
 
-Normally, you'd write some code looking like this:
-```swift
-let url = URL(string: "https://xcapi.com/blades")! // Someone should make this API…
+Welcome! This documentation is designed to help you get started with `Ether` as quickly as possible, answer any questions you might have, and provide a reference for the API.
 
-var request = URLRequest(url: url)
-request.httpMethod = "GET"
-
-let task = URLSession.shared.dataTask(with: request) { data, response, error in
-    guard error == nil else {
-        // Handle error…
-        return
-    }
-    
-    do {
-        if let pyra = try JSONDecoder().decode(Blade.self, from: data) {
-            // It's about time!
-        }
-    } catch {
-        // Handle error…
-    }
-}
-
-task.resume()
-```
-
-_…Yikes._ Are we cavemen?? Surely we can do better.
-
-## GET
-Let's replace this GET request using Ether:
-```swift
-let pyra = try? await Ether.get(route: Routes.blade(id: 1),
-                                type: Blade.self)
-```
-
-Yep, Ether will not only perform the request for you, in one call, using async/await, but it will even decode the result into the `Decodable` type you want to use.
-
-## POST
-What about `POST`s?
-```swift
-try? await Ether.post(route: Routes.time,
-                      with: reyn)
-```
-Dead simple.
-
-## Custom Requests
-
-Okay, but what about those times when you need to send a `PUT` request the server, using a dictionary _without_ a corresponding struct, _AND_ it needs GZip encoding?
-
-…sounds _awfully_ contrived, but hey, Ether's got you covered here as well:
-
-```swift
-let result = try? await Ether.request(route: Routes.locations,
-                                      method: .put,
-                                      parameters: ["Dunban": "over there"],
-                                      usingEncoding: .gZip,
-                                      showAlertIfFailed: .ifUserHasntMuted)
-```
-
-Enjoy!
+If you have any questions not covered here, feel free to [open an issue](https://github.com/JacobSyndeo/Ether/issues/new)! I'll be happy to help. 🙂
 
 ## Topics
+
+### Essentials
+- <doc:Introduction>
+- <doc:Quick-Overview>
+- <doc:Usage>
 
 ### Firing off network requests
 
@@ -73,10 +22,32 @@ Enjoy!
 - ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:showAlertIfFailed:)``
 - ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``
 
-### Routing
+### Fetchable
 
-- ``EtherRoute``
+- ``Ether/EtherFetchable``
+- ``Ether/EtherSingularFetchable``
+- ``Ether/EtherPluralFetchable``
+
+### Routes
+
+- ``Ether/EtherRoute``
+- ``Ether/EtherTypedRoute``
 
 ### Responses
 
 - ``Ether/Ether/Response``
+
+### Custom types
+
+- ``Ether/Ether/Headers``
+- ``Ether/Ether/Parameters``
+- ``Ether/Ether/Method``
+- ``Ether/Ether/RequestBody``
+- ``Ether/Ether/FormValue``
+- ``Ether/Ether/AlertBehavior``
+- ``Ether/Ether/ParameterEncoding``
+- ``Ether/Ether/CacheBehavior``
+
+### Core
+
+- ``Ether/Ether``

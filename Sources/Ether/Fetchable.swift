@@ -53,6 +53,7 @@ public protocol EtherPluralFetchable: Decodable {
     static func pluralRoute(filters: Ether.FetchableFilters?) -> any EtherRoute
 }
 
+/// A typealias representing conformance to both ``EtherSingularFetchable`` and ``EtherPluralFetchable``.
 public typealias EtherFetchable = EtherSingularFetchable & EtherPluralFetchable
 
 extension Ether {
@@ -107,7 +108,7 @@ public extension Ether.SingularFetchable {
     ///
     /// So if the server is giving you a result container (which contains the type you're after), this function is for you!
     ///
-    /// Otherwise, in the case that you _don't_ want that metadata, use ``Ether/Ether/SingularFetchable/fetchWithContainer(id:parameters:container:keyPath:)``.
+    /// Otherwise, in the case that you _don't_ want that metadata, use ``Ether/EtherSingularFetchable/fetch(id:parameters:container:keyPath:)``.
     /// - Parameters:
     ///   - id: The identifier of the instance to fetch from the server.
     ///   - parameters: The parameters to use in the request. Defaults to empty.
@@ -169,7 +170,7 @@ extension Ether.PluralFetchable {
     ///
     /// So if the server is giving you a result container (which contains the instances of the type you're after), this function is for you!
     ///
-    /// Otherwise, in the case that you _don't_ want that metadata, use ``Ether/EtherPluralFetchable/fetchWithContainer(filters:parameters:container:keyPath:)``.
+    /// Otherwise, in the case that you _don't_ want that metadata, use ``Ether/EtherPluralFetchable/fetchAll(filters:parameters:container:keyPath:)``.
     /// - Parameters:
     ///   - filters: An optional set of filters. See ``Ether/Ether/FetchableFilters`` for more information.
     ///   - parameters: The parameters to use in the request. Defaults to empty.
@@ -194,7 +195,7 @@ extension Ether.PluralFetchable {
     ///
     /// If all you really care about is the type you asked for, then this function is for you!
     ///
-    /// Otherwise, in the case that you _do_ want that metadata, use ``Ether/EtherPluralFetchable/fetchWithContainer(filters:parameters:container:)``.
+    /// Otherwise, in the case that you _do_ want that metadata, use ``Ether/EtherPluralFetchable/fetchAllWithContainer(filters:parameters:container:)``.
     /// - Parameters:
     ///   - filters: An optional set of filters. See ``Ether/Ether/FetchableFilters`` for more information.
     ///   - parameters: The parameters to use in the request. Defaults to empty.

@@ -10,8 +10,9 @@ import OSLog
 
 /// The core of Ether. All the core functions and types are namespaced under this.
 public struct Ether {
-    /// Formatted [domain, [headerKey, headerValue]]
-    public static var authHeaders: [String: [String: String]]?
+    /// Here, you can set custom headers for specific domains.
+    /// That way, you can stay authenticated by passing a session token, specific to a domain, so that it's not leaked out to other domains you may access.
+    public static var domainHeaders: [String: Headers]?
     
     internal static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -226,10 +227,11 @@ public struct Ether {
             request.allHTTPHeaderFields?["Accept"] = "application/json"
         }
         
-        // Attach auth headers if it's a known/trusted domain
+        // Attach headers if it's a known/trusted domain
+        // Be careful here; these may be auth tokens. Don't leak them to other domains!
         var knownDomain: String?
         if let host = try? route.asURL.host,
-           let headersForHost = authHeaders?[host] {
+           let headersForHost = domainHeaders?[host] {
             knownDomain = host
             for header in headersForHost {
                 request.allHTTPHeaderFields?[header.key] = header.value
