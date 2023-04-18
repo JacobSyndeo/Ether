@@ -9,28 +9,6 @@ extension Ether {
     /// A dictionary of parameters to apply to a `URLRequest`.
     public typealias Parameters = [String: LosslessStringConvertible]
     
-    /// An enum defining preferred behavior of error messaging alerts.
-    /// Currently/primarily used for Authentication/Login Status alerts.
-    public enum AlertBehavior {
-        /// Never show alerts for failed requests.
-        /// This can be used for unimportant background tasks.
-        case never
-        
-        /// Only show alerts if the user hasn't asked for them to be muted.
-        /// This is preferred for important background reload tasks.
-        case ifUserHasntMuted
-        
-        /// Override the user's mute request.
-        /// Use this if the action is user-initiated, such as pushing a reload button.
-        case evenIfMuted
-    }
-    
-    // TODO: Consider refactoring AlertBehavior into "Importance" or something.
-    /// It'd be along the lines of Async Task priority.
-    /// e.g. `.never` would be `.bgUnimportant`
-    /// `.ifUserHasntMuted` would be `.bgImportant`
-    /// `.evenIfMuted` would be `.userInitiated`
-    
     /// An enum of HTTP methods.
     public enum Method: String {
         case options = "OPTIONS"

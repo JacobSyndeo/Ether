@@ -31,7 +31,6 @@ Ether is designed to solve these problems:
 Furthermore, Ether has some features that you won't find in other networking libraries:
 
 - **Automatic decoding**. Ether automatically decodes JSON responses into Swift types. This not only makes it easier to use, but greatly reduces the amount of boilerplate code you need to write.
-- **Alert support**. Ether has built-in support for showing alerts when network requests fail, which (again) reduces the amount of boilerplate code you need to write.
 
 ## Getting started
 

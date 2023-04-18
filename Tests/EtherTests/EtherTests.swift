@@ -100,14 +100,12 @@ final class EtherTests: XCTestCase {
         let result = try await Ether.post(route: Routes.POSTAComplicatedStruct(),
                                            with: .encodable(SomewhatComplicatedStruct.aSomewhatComplicatedInstance),
                                            usingEncoding: .json,
-                                           responseFormat: SomewhatComplicatedStruct.self,
-                                           showAlertIfFailed: .never)
+                                           responseFormat: SomewhatComplicatedStruct.self)
         
         // Try the convenient way
         let result2 = try await Routes.POSTAComplicatedStruct().post(with: .encodable(SomewhatComplicatedStruct.aSomewhatComplicatedInstance),
                                                                    usingEncoding: .json,
-                                                                   responseFormat: SomewhatComplicatedStruct.self,
-                                                                   showAlertIfFailed: .never)
+                                                                   responseFormat: SomewhatComplicatedStruct.self)
         
         XCTAssertEqual(result.data.decoded, result2.data.decoded) // Ensure the convenience wrapper is working properly
         XCTAssertEqual(result.data.decoded, SomewhatComplicatedStruct.aSomewhatComplicatedInstance) // Test the actual values within
@@ -117,12 +115,10 @@ final class EtherTests: XCTestCase {
         // Try the longform way
         let result = try await Ether.postMultipartForm(route: Routes.POSTAMultipartForm(),
                                                         formItems: SharedData.Multipart.multipartFormFields,
-                                                        responseFormat: ImageWrapper.self,
-                                                        showAlertIfFailed: .never)
+                                                        responseFormat: ImageWrapper.self)
         // Try the convenient way
         let result2 = try await Routes.POSTAMultipartForm().postMultipartForm(formItems: SharedData.Multipart.multipartFormFields,
-                                                                            responseFormat: ImageWrapper.self,
-                                                                            showAlertIfFailed: .never)
+                                                                            responseFormat: ImageWrapper.self)
         
         XCTAssertEqual(result.data.decoded?.image.pngData(), result2.data.decoded?.image.pngData()) // Ensure the convenience wrapper is working properly
         XCTAssertEqual(result.data.decoded?.image.pngData(), SharedData.Multipart.MultipartData.imageWrapper.image.pngData()) // Test the actual values within
@@ -131,8 +127,7 @@ final class EtherTests: XCTestCase {
     func testRawDataRequest() async throws {
         // Try the longform way
         let result = try await Ether.request(route: Routes.GETAnImage(),
-                                              method: .get,
-                                              showAlertIfFailed: .never)
+                                              method: .get)
 
         let imageDataEncodedAsBase64String = String(data: result.data.raw!, encoding: .utf8)!
         

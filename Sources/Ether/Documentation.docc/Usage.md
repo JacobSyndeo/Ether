@@ -26,7 +26,7 @@ let user = try await Ether.get(route: Routes.user(id: 1),
 
 ### Through a Route
 
-If you want to use a ``Ether/EtherRoute``, you can use the ``Ether/EtherRoute/get(type:parameters:decoder:showAlertIfFailed:)`` method on the `Route` itself.
+If you want to use a ``Ether/EtherRoute``, you can use the ``Ether/EtherRoute/get(type:parameters:decoder:)`` method on the `Route` itself.
 
 ```swift
 let user = try await Routes.user(id: 1).get(type: User.self)
@@ -34,7 +34,7 @@ let user = try await Routes.user(id: 1).get(type: User.self)
 
 ### Through a TypedRoute
 
-If you want to use ``Ether/EtherTypedRoute``, you can use the ``Ether/EtherTypedRoute/get(parameters:decoder:showAlertIfFailed:)`` method on the `TypedRoute` itself.
+If you want to use ``Ether/EtherTypedRoute``, you can use the ``Ether/EtherTypedRoute/get(parameters:decoder:)`` method on the `TypedRoute` itself.
 
 ```swift
 // Requires Routes to conform to `EtherTypedRoute`.

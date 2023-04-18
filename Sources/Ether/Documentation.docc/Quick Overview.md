@@ -60,8 +60,7 @@ Okay, but what about those times when you need to send a `PUT` request the serve
 let result = try? await Ether.request(route: Routes.locations,
                                       method: .put,
                                       parameters: ["Dunban": "over there"],
-                                      usingEncoding: .gZip,
-                                      showAlertIfFailed: .ifUserHasntMuted)
+                                      usingEncoding: .gZip)
 ```
 
 Enjoy!

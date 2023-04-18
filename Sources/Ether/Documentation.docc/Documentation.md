@@ -17,10 +17,10 @@ If you have any questions not covered here, feel free to [open an issue](https:/
 
 ### Firing off network requests
 
-- ``Ether/Ether/get(route:type:parameters:decoder:showAlertIfFailed:)``
-- ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:showAlertIfFailed:)``
-- ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:showAlertIfFailed:)``
-- ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``
+- ``Ether/Ether/get(route:type:parameters:decoder:)``
+- ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:)``
+- ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:)``
+- ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:)``
 
 ### Fetchable
 
@@ -44,7 +44,6 @@ If you have any questions not covered here, feel free to [open an issue](https:/
 - ``Ether/Ether/Method``
 - ``Ether/Ether/RequestBody``
 - ``Ether/Ether/FormValue``
-- ``Ether/Ether/AlertBehavior``
 - ``Ether/Ether/ParameterEncoding``
 - ``Ether/Ether/CacheBehavior``
 

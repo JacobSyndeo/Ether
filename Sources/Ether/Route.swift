@@ -68,21 +68,18 @@ extension Ether.Route {
     ///   - type: The `Decodable` type you expect to receive back.
     ///   - parameters: A collection of key-value pairs to use as parameters. Defaults to empty.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
     ///
-    /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:)``, the main version of this method.
     public func get<T>(type: T.Type,
                        parameters: Ether.Parameters = [:],
                        /*cacheBehavior: CacheBehavior = .neverUse*/ // TODO: Get caching working!
-                       decoder: JSONDecoder = .init(),
-                       showAlertIfFailed: Ether.AlertBehavior = .never) async throws -> T where T: Decodable {
+                       decoder: JSONDecoder = .init()) async throws -> T where T: Decodable {
         try await Ether.get(route: self,
                              type: type,
                              parameters: parameters,
                              /*cacheBehavior: cacheBehavior,*/
-                             decoder: decoder,
-                             showAlertIfFailed: showAlertIfFailed)
+                             decoder: decoder)
     }
     
     /// Fires off a POST request to send data.
@@ -92,22 +89,19 @@ extension Ether.Route {
     ///   - encoding: The encoding to use. Defaults to ``Ether/Ether/ParameterEncoding/gZip``.
     ///   - responseFormat: The `Decodable` type we expect to receive back. Ether will attempt to decode the HTTP response into this type. If no type is provided, the response struct will contain raw, undecoded data.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
     ///
-    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:)``, the main version of this method.
     @discardableResult
     public func post<T>(with data: Ether.RequestBody,
                         usingEncoding encoding: Ether.ParameterEncoding = .gZip,
                         responseFormat: T.Type = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
-                        decoder: JSONDecoder = .init(),
-                        showAlertIfFailed: Ether.AlertBehavior = .never) async throws -> Ether.Response<T> {
+                        decoder: JSONDecoder = .init()) async throws -> Ether.Response<T> {
         try await Ether.post(route: self,
                               with: data,
                               usingEncoding: encoding,
                               responseFormat: responseFormat,
-                              decoder: decoder,
-                              showAlertIfFailed: showAlertIfFailed)
+                              decoder: decoder)
     }
     
     /// This method sends a multipart POST request to the given URL.
@@ -116,20 +110,17 @@ extension Ether.Route {
     ///   - formItems: The form items to include in the request. The key is the name of the form item, and the value is a `FormValue` that specifies the value of the form item.
     ///   - responseFormat: The type of data to bundle in the response. Defaults to `DummyTypeUsedWhenNoDecodableIsRequested`.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:)``, the main version of this method.
     @discardableResult
     public func postMultipartForm<T>(formItems: [String: Ether.FormValue] = [:],
                                      responseFormat: T.Type = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
-                                     decoder: JSONDecoder = .init(),
-                                     showAlertIfFailed: Ether.AlertBehavior = .never) async throws -> Ether.Response<T> {
+                                     decoder: JSONDecoder = .init()) async throws -> Ether.Response<T> {
         try await Ether.postMultipartForm(route: self,
                                            formItems: formItems,
                                            responseFormat: responseFormat,
-                                           decoder: decoder,
-                                           showAlertIfFailed: showAlertIfFailed)
+                                           decoder: decoder)
     }
     
     /// Fires off a custom HTTP request.
@@ -142,10 +133,9 @@ extension Ether.Route {
     ///   - responseFormat: The type of data to bundle in the response.
     ///   - encoding: The encoding to use. Defaults to ``Ether/Ether/ParameterEncoding/urlQuery``.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
-    ///   - showAlertIfFailed: An ``Ether/Ether/AlertBehavior`` enum specifying if/when to show an alert if a failure took place. Defaults to ``Ether/Ether/AlertBehavior/never``.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
     ///
-    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:showAlertIfFailed:)``, the main version of this method.
+    /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:)``, the main version of this method.
     @discardableResult
     public func request<T>(method: Ether.Method,
                            headers: Ether.Headers = [:],
@@ -153,8 +143,7 @@ extension Ether.Route {
                            body: Ether.RequestBody? = nil,
                            responseFormat: T.Type? = Ether._DummyTypeUsedWhenNoDecodableIsRequested.self,
                            usingEncoding encoding: Ether.ParameterEncoding = .urlQuery,
-                           decoder: JSONDecoder = .init(),
-                           showAlertIfFailed: Ether.AlertBehavior = .never) async throws -> Ether.Response<T> where T: Decodable {
+                           decoder: JSONDecoder = .init()) async throws -> Ether.Response<T> where T: Decodable {
         try await Ether.request(route: self,
                                  method: method,
                                  headers: headers,
@@ -162,7 +151,6 @@ extension Ether.Route {
                                  body: body,
                                  responseFormat: responseFormat,
                                  usingEncoding: encoding,
-                                 decoder: decoder,
-                                 showAlertIfFailed: showAlertIfFailed)
+                                 decoder: decoder)
     }
 }
