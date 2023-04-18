@@ -21,7 +21,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/1024jp/GzipSwift", from: "5.1.1"),
+        // .package(url: "https://github.com/1024jp/GzipSwift", from: "5.1.1"),
 //        .package(url: "https://github.com/vapor/vapor", .upToNextMajor(from: "4.0.0")),
 //        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
 //        .package(url: "https://github.com/themomax/swift-docc-plugin", branch: "add-extended-types-flag")
@@ -32,7 +32,9 @@ let package = Package(
         
         // 🎆 Ether
         .target(name: "Ether",
-                dependencies: [.product(name: "Gzip", package: "GzipSwift")]
+                dependencies: [
+                    // .product(name: "Gzip", package: "GzipSwift")
+                ]
 //                swiftSettings: [.unsafeFlags(["-emit-extension-block-symbols"])]
                ),
 //        .testTarget(

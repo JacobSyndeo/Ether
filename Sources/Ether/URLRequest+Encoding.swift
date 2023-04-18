@@ -1,5 +1,4 @@
 import Foundation
-import Gzip
 
 internal extension URLRequest {
     /// Creates an instance with the specified `method` and `urlString.
@@ -61,7 +60,7 @@ internal extension URLRequest {
                 urlRequest.allHTTPHeaderFields?["Content-Encoding"] = "gzip"
                 
                 // Set the body of the request to the gZipped JSON data
-                urlRequest.httpBody = try data.gzipped()
+                urlRequest.httpBody = try ((data as NSData).compressed(using: .zlib) as Data)
             } else {
                 // Set the body of the request to the raw JSON data
                 urlRequest.httpBody = data
@@ -71,9 +70,9 @@ internal extension URLRequest {
             if let error = error as? EncodingError {
                 // If we failed to serialize the parameters into JSON, throw an error
                 throw Ether.Error.jsonEncodingFailed(error)
-            } else if let error = error as? GzipError {
-                // If we failed to zip the JSON, throw an error
-                throw Ether.Error.gZipError(error)
+//            } else if let error = error as? GzipError {
+//                // If we failed to zip the JSON, throw an error
+//                throw Ether.Error.gZipError(error)
             } else {
                 // Something else went wrong during encoding
                 throw Ether.Error.jsonEncodingFailed(nil)

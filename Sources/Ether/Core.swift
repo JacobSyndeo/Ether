@@ -5,7 +5,6 @@
 //
 
 import Foundation
-import Gzip
 import OSLog
 
 /// The core of Ether. All the core functions and types are namespaced under this.
