@@ -11,7 +11,7 @@ import OSLog
 public struct Ether {
     /// Here, you can set custom headers for specific domains.
     /// That way, you can stay authenticated by passing a session token, specific to a domain, so that it's not leaked out to other domains you may access.
-    public static var domainHeaders: [String: Headers]?
+	public static var domainHeaders: [String: Headers] = [:]
     
     internal static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -217,7 +217,7 @@ public struct Ether {
         // Be careful here; these may be auth tokens. Don't leak them to other domains!
         var knownDomain: String?
         if let host = try? route.asURL.host,
-           let headersForHost = domainHeaders?[host] {
+           let headersForHost = domainHeaders[host] {
             knownDomain = host
             for header in headersForHost {
                 request.allHTTPHeaderFields?[header.key] = header.value
