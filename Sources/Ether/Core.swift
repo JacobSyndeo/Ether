@@ -31,25 +31,7 @@ public struct Ether {
     public static func get<T>(route: any Route,
                               type: T.Type,
                               parameters: Parameters = [:],
-                              /*cacheBehavior: CacheBehavior = .neverUse,*/ // TODO: Get caching working!
                               decoder: JSONDecoder = JSONDecoder()) async throws -> T where T: Decodable {
-        //        let needsNewRequest: Bool
-        //        let data: Data
-        //
-        //        switch cacheBehavior {
-        //        case .alwaysUseIfAvailable:
-        //            ()
-        //        case .onlyUseIfOffline:
-        //            ()
-        //        case .neverUse:
-        //            needsNewRequest = true
-        //        }
-        
-        //        if needsNewRequest {
-//        let response = try await request(url: url,
-//                                         method: HTTPMethod.get,
-//                                         parameters: parameters,
-//                                         usingEncoding: Encoding.url)
         
         let response = try await request(route: route,
                                          method: Method.get,
@@ -57,14 +39,6 @@ public struct Ether {
                                          responseFormat: type,
                                          usingEncoding: .urlQuery, // Using URL encoding is the standard, acceptable way to do GET requests. We intentionally don't expose the encoding setting on `get`. If a user REALLY wants to use a GET request with a different encoding, they build it using the `request` function directly. Interesting discussion here: https://stackoverflow.com/questions/978061/http-get-with-request-body
                                          decoder: decoder)
-        
-//        guard let data = response?.data else {
-//            throw CloudError.miscResponseIssue
-//        }
-//                } else {
-//                    // TODO: Fetch from cache
-//                    // TODO: Handle cache misses! Maybe put the cache-load attempt before the network request, so that we can still fire it off if the caller wants us to.
-//                }
         
         switch response.data {
         case let .decoded(data):

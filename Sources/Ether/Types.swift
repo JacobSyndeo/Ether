@@ -35,13 +35,6 @@ extension Ether {
         case custom(contentType: String)
     }
     
-    public enum CacheBehavior {
-        case alwaysUseIfAvailable
-        case useIfTimePassedIsLessThan(seconds: Int)
-        case onlyUseIfOffline
-        case neverUse
-    }
-    
     public enum RequestBody {
         case encodable(Encodable, encoder: JSONEncoder = JSONEncoder())
         case rawData(Data)

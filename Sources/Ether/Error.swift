@@ -9,7 +9,6 @@ extension Ether {
         case badResponseCode(_ responseCode: Int)
         case jsonEncodingFailed(_ error: EncodingError?)
         case jsonDecodingFailed(_ error: DecodingError?)
-//        case compressionError(_ error: GzipError)
         case miscResponseIssue // For unknown/uncaught
         
         public var errorDescription: String? {
@@ -44,8 +43,6 @@ extension Ether {
                 }
                 
                 return message
-//            case let .compressionError(error):
-//                return "An error occurred while trying to compress the request's data: \(error)"
             case .miscResponseIssue:
                 return "An unknown miscellaneous error occurred. Please report this to Ether's maintainer."
             }
@@ -67,8 +64,6 @@ extension Ether {
                 return error?.failureReason
             case let .jsonDecodingFailed(error):
                 return error?.failureReason
-//            case let .gZipError(error):
-//                return "Error kind: \(error.kind). \(error.message)"
             case .miscResponseIssue:
                 return nil
             }
@@ -103,8 +98,6 @@ extension Ether {
                 return error?.recoverySuggestion
             case let .jsonDecodingFailed(error):
                 return error?.recoverySuggestion
-//            case .gZipError(_):
-//                return nil
             case .miscResponseIssue:
                 return nil
             }
