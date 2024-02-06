@@ -73,12 +73,10 @@ extension Ether.Route {
     /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:)``, the main version of this method.
     public func get<T>(type: T.Type,
                        parameters: Ether.Parameters = [:],
-                       /*cacheBehavior: CacheBehavior = .neverUse*/ // TODO: Get caching working!
                        decoder: JSONDecoder = .init()) async throws -> T where T: Decodable {
         try await Ether.get(route: self,
                              type: type,
                              parameters: parameters,
-                             /*cacheBehavior: cacheBehavior,*/
                              decoder: decoder)
     }
     
