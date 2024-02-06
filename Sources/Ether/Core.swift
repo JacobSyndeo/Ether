@@ -12,6 +12,10 @@ public struct Ether {
     /// Here, you can set custom headers for specific domains.
     /// That way, you can stay authenticated by passing a session token, specific to a domain, so that it's not leaked out to other domains you may access.
 	public static var domainHeaders: [String: Headers] = [:]
+
+    /// If true, Ether will log all requests to the console, 
+    /// NOTE: This will log sensitive data, such as auth tokens, to the console, and therefore, this option is ignored in non-debug builds.
+    public static var logRequestsForDebugBuilds: Bool = false
     
     internal static let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -236,8 +240,12 @@ public struct Ether {
             break
         }
         
-        // Prints out details about the URL if you want.
-//        logger.trace("Requesting: \(request.debugString())")
+        // If logging is enabled and the app is in debug mode, log the request!
+        if logRequestsForDebugBuilds {
+            #if DEBUG
+                logger.debug("Requesting: \(request.debugString())")
+            #endif
+        }
         
         // Fire off the request!
         let data: Data
