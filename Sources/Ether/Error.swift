@@ -18,7 +18,7 @@ extension Ether {
             case .responseNotHTTP:
                 return "The response was not valid HTTP!"
             case let .badURL(string):
-                return "The string provided to Ether as an `Ether.Route` (for automatic conversion into a URL) is invalid: \(string)"
+                return "The string provided to Ether as an `Ether.Route` (for automatic conversion into a URL) is invalid: \(string ?? "(nil)")"
             case let .badQueryItem(queryItem):
                 return "One of the provided query items is invalid: \(queryItem)"
             case let .badResponseCode(badCode):
@@ -55,7 +55,7 @@ extension Ether {
             case .responseNotHTTP:
                 return "Ether can only handle proper, [RFC 2616]-spec HTTP responses."
             case let .badURL(string):
-                return "The string provided to Ether as an `Ether.Route` (for automatic conversion into a URL) does not represent a valid [RFC 1738]-spec URL: \(string)"
+                return "The string provided to Ether as an `Ether.Route` (for automatic conversion into a URL) does not represent a valid [RFC 1738]-spec URL: \(string ?? "(nil)")"
             case .badQueryItem(_):
                 return nil
             case let .badResponseCode(badCode):
@@ -76,7 +76,7 @@ extension Ether {
             case .responseNotHTTP:
                 return "Try examining the response using a tool like Rested (on Mac App Store) or Postman. If something looks wrong with the response, consider contacting the server's administrator. Otherwise, there may be a bug in Ether; please open an issue ticket."
             case let .badURL(string):
-                return "Double-check this URL and try to find the issue: \(string)"
+                return "Double-check this URL and try to find the issue: \(string ?? "(nil)")"
             case .badQueryItem(_):
                 return nil
             case let .badResponseCode(badCode):

@@ -16,12 +16,17 @@ internal extension URLRequest {
     /// Encodes a URLRequest, using URL encoding as defined in [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt).
     /// - Parameter parameters: The ``Ether/Ether/Parameters`` to encode into the request as JSON.
     /// - Returns: A URL-encoded URLRequest.
+    /// - Throws: An ``Ether/Ether/Error/badQueryItem(_:)`` if the parameters could not be encoded into a URL query item.
     /// - SeeAlso: https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
     /// - SeeAlso: https://datatracker.ietf.org/doc/html/rfc3986
     func urlEncoded(with parameters: Ether.Parameters = [:]) throws -> URLRequest {
         // Create a copy of the request
         var request = self
-        
+
+        guard url != nil else {
+            throw Ether.Error.badURL(nil) // This shouldn't happen, but if it does, we ought to know about it.
+        }
+
         // Set the content type
         request.allHTTPHeaderFields?["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
         
@@ -33,8 +38,12 @@ internal extension URLRequest {
             URLQueryItem(name: key, value: "\(value)")
         }
         
-        // Build a URL from the URLComponents object.
-        request.url = components!.url!// ?? url // Fallback to the normal one… do we want to throw here?
+        // Attempt to build a URL from the URLComponents object.
+        // This really shouldn't fail, but if it does, we ought to know about it as well.
+        guard let componentsURL = components?.url else {
+            throw Ether.Error.badURL(request.url?.absoluteString)
+        }
+        request.url = componentsURL
         
         return request
     }
