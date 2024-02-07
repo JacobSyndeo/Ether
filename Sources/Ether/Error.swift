@@ -1,16 +1,39 @@
 import Foundation
 
 extension Ether {
+    /// An error that can occur while using Ether.
+    /// This can help give insight into what went wrong.
+    /// As long as the issue wasn't server-side, network-related, or a bug in Ether, this should hopefully help you resolve the issue!
+    /// If not, or if you suspect a bug in Ether, please [open an issue on GitHub](https://github.com/JacobSyndeo/Ether/issues/new), and I'll do my best to help you out!
     public enum Error: Swift.Error, LocalizedError {
+        /// The request failed.
         case requestFailed
+        /// The response was not valid HTTP!
         case responseNotHTTP
-        case badURL(_ attemptedToConvertFrom: String)
+        /// The string provided to Ether as an `Ether.Route` (for automatic conversion into a URL) is invalid.
+        /// - Parameters:
+        ///   - attemptedToConvertFrom: The string that Ether attempted to convert into a URL.
+        case badURL(_ attemptedToConvertFrom: String?)
+        /// One of the provided query items is invalid.
+        /// - Parameters:
+        ///   - queryItem: The query item that Ether found to be invalid.
         case badQueryItem(_ queryItem: URLQueryItem)
+        /// The server responded with a bad response code.
+        /// - Parameters:
+        ///   - responseCode: The response code that Ether found to be invalid.
         case badResponseCode(_ responseCode: Int)
+        /// Encoding to JSON failed.
+        /// - Parameters:
+        ///   - error: The error that occurred while encoding to JSON.
         case jsonEncodingFailed(_ error: EncodingError?)
+        /// Decoding from JSON failed.
+        /// - Parameters:
+        ///   - error: The error that occurred while decoding from JSON.
         case jsonDecodingFailed(_ error: DecodingError?)
+        /// Some other, unknown issue occurred. [Please report this as an issue!](https://github.com/JacobSyndeo/Ether/issues/new)
         case miscResponseIssue // For unknown/uncaught
         
+        /// A string describing the error.
         public var errorDescription: String? {
             switch self {
             case .requestFailed:
@@ -48,6 +71,7 @@ extension Ether {
             }
         }
         
+        /// A string describing the reason for the error.
         public var failureReason: String? {
             switch self {
             case .requestFailed:
@@ -69,6 +93,7 @@ extension Ether {
             }
         }
         
+        /// A string describing how to recover from the error.
         public var recoverySuggestion: String? {
             switch self {
             case .requestFailed:

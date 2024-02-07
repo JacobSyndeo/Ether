@@ -93,6 +93,7 @@ public extension Ether.SingularFetchable {
     ///   - id: The identifier of the instance to fetch from the server.
     ///   - parameters: The parameters to use in the request. Defaults to empty.
     /// - Returns: The instance requested.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     static func fetch(id: String? = nil, parameters: Ether.Parameters = [:]) async throws -> Self {
         return try await Ether.get(route: singularRoute(id: id),
                                    type: Self.self,
@@ -114,6 +115,7 @@ public extension Ether.SingularFetchable {
     ///   - parameters: The parameters to use in the request. Defaults to empty.
     ///   - container: The container type to decode from. You'll need to create this type based on the server's API response format.
     /// - Returns: An instance of the provided container format, based on the server's response.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     static func fetchWithContainer<Container: Decodable>(id: String? = nil,
                                                          parameters: Ether.Parameters = [:],
                                                          container: Container.Type) async throws -> Container {
@@ -138,6 +140,7 @@ public extension Ether.SingularFetchable {
     ///   - container: The container type to decode from. You'll need to create this type based on the server's API response format.
     ///   - keyPath: The key path representing the location of this type within the container.
     /// - Returns: An instance of the type with the provided identifier, based on the server's response.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     static func fetch<Container: Decodable>(id: String? = nil,
                                             parameters: Ether.Parameters = [:],
                                             container: Container.Type,
@@ -154,6 +157,7 @@ extension Ether.PluralFetchable {
     ///   - filters: An optional set of filters. See ``Ether/Ether/FetchableFilters`` for more information.
     ///   - parameters: The parameters to use in the request. Defaults to empty.
     /// - Returns: An array containing all available instances of the type matching the provided filters (if any), based on the server's response.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     public static func fetchAll(filters: Ether.FetchableFilters? = nil,
                                 parameters: Ether.Parameters = [:]) async throws -> [Self] {
         return try await Ether.get(route: pluralRoute(filters: filters),
@@ -177,6 +181,7 @@ extension Ether.PluralFetchable {
     ///   - container: The container type to decode from. You'll need to create this type based on the server's API response format.
     ///   - keyPath: The key path representing the location of the array of instances of the type within the container.
     /// - Returns: An instance of the provided container format, based on the server's response.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     public static func fetchAllWithContainer<Container: Decodable>(filters: Ether.FetchableFilters? = nil,
                                                                    parameters: Ether.Parameters = [:],
                                                                    container: Container.Type,
@@ -195,13 +200,14 @@ extension Ether.PluralFetchable {
     ///
     /// If all you really care about is the type you asked for, then this function is for you!
     ///
-    /// Otherwise, in the case that you _do_ want that metadata, use ``Ether/EtherPluralFetchable/fetchAllWithContainer(filters:parameters:container:)``.
+    /// Otherwise, in the case that you _do_ want that metadata, use ``Ether/EtherPluralFetchable/fetchAllWithContainer(filters:parameters:container:keyPath:)``.
     /// - Parameters:
     ///   - filters: An optional set of filters. See ``Ether/Ether/FetchableFilters`` for more information.
     ///   - parameters: The parameters to use in the request. Defaults to empty.
     ///   - container: The container type to decode from. You'll need to create this type based on the server's API response format.
     ///   - keyPath: The key path representing the location of this type within the container.
     /// - Returns: An array containing all available instances of the type matching the provided filters (if any), based on the server's response.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     public static func fetchAll<Container: Decodable>(filters: Ether.FetchableFilters? = nil,
                                                       parameters: Ether.Parameters = [:],
                                                       container: Container.Type,

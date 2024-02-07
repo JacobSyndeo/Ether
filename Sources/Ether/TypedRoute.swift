@@ -28,6 +28,7 @@ extension EtherTypedRoute {
     ///   - parameters: A collection of key-value pairs to use as parameters. Defaults to empty.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:)``, the main version of this method.
     public func get(parameters: Ether.Parameters = [:],
@@ -46,6 +47,7 @@ extension EtherTypedRoute {
     ///   - responseFormat: The `Decodable` type we expect to receive back. Ether will attempt to decode the HTTP response into this type. If no type is provided, the response struct will contain raw, undecoded data.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:)``, the main version of this method.
     public func post(with data: Ether.RequestBody,
@@ -65,6 +67,7 @@ extension EtherTypedRoute {
     ///   - responseFormat: The type of data to bundle in the response. Defaults to `DummyTypeUsedWhenNoDecodableIsRequested`.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:)``, the main version of this method.
     public func postMultipartForm(formItems: [String: Ether.FormValue] = [:],
@@ -86,6 +89,7 @@ extension EtherTypedRoute {
     ///   - encoding: The encoding to use. Defaults to ``Ether/Ether/ParameterEncoding/urlQuery``.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:)``, the main version of this method.
     public func request(method: Ether.Method,

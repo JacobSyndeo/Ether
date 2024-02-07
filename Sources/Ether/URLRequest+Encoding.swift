@@ -16,7 +16,7 @@ internal extension URLRequest {
     /// Encodes a URLRequest, using URL encoding as defined in [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt).
     /// - Parameter parameters: The ``Ether/Ether/Parameters`` to encode into the request as JSON.
     /// - Returns: A URL-encoded URLRequest.
-    /// - Throws: An ``Ether/Ether/Error/badQueryItem(_:)`` if the parameters could not be encoded into a URL query item.
+    /// - Throws: An ``Ether/Ether/Error/badURL(_:)`` if the URL is invalid.
     /// - SeeAlso: https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding
     /// - SeeAlso: https://datatracker.ietf.org/doc/html/rfc3986
     func urlEncoded(with parameters: Ether.Parameters = [:]) throws -> URLRequest {
@@ -53,6 +53,7 @@ internal extension URLRequest {
     /// - Parameter parameters: The ``Ether/Ether/Parameters`` to encode into the request as JSON.
     /// - Parameter useGZip: Whether or not to gZip the JSON data.
     /// - Returns: A JSON-encoded URLRequest.
+    /// - Throws: An ``Ether/Ether/Error/jsonEncodingFailed(_:)`` if the parameters could not be encoded into JSON.
     func jsonEncoded(with parameters: Ether.Parameters = [:], usingGZip useGZip: Bool = false) throws -> URLRequest {
         // Create a copy of the urlRequest
         var urlRequest = self
@@ -79,9 +80,6 @@ internal extension URLRequest {
             if let error = error as? EncodingError {
                 // If we failed to serialize the parameters into JSON, throw an error
                 throw Ether.Error.jsonEncodingFailed(error)
-//            } else if let error = error as? GzipError {
-//                // If we failed to zip the JSON, throw an error
-//                throw Ether.Error.gZipError(error)
             } else {
                 // Something else went wrong during encoding
                 throw Ether.Error.jsonEncodingFailed(nil)
@@ -91,6 +89,7 @@ internal extension URLRequest {
         return urlRequest
     }
     
+    /// A string representation of the request, for debugging purposes.
     func debugString() -> String {
         return """
         \(self.httpMethod!) \(url!)

@@ -30,6 +30,7 @@ public struct Ether {
     ///   - parameters: A collection of key-value pairs to use as parameters. Defaults to empty.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/EtherRoute/get(type:parameters:decoder:)``, a convenience version of this method.
     public static func get<T>(route: any Route,
@@ -61,6 +62,7 @@ public struct Ether {
     ///   - responseFormat: The `Decodable` type we expect to receive back. Ether will attempt to decode the HTTP response into this type. If no type is provided, the response struct will contain raw, undecoded data.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: A ``Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/EtherRoute/post(with:usingEncoding:responseFormat:decoder:)``, a convenience version of this method.
     @discardableResult
@@ -86,6 +88,7 @@ public struct Ether {
     ///   - responseFormat: The type of data to bundle in the response. Defaults to `DummyTypeUsedWhenNoDecodableIsRequested`.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/EtherRoute/postMultipartForm(formItems:responseFormat:decoder:)``, a convenience version of this method.
     @discardableResult
@@ -161,6 +164,7 @@ public struct Ether {
     ///   - encoding: The encoding to use. Defaults to ``ParameterEncoding/urlQuery``.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/EtherRoute/request(method:headers:parameters:body:responseFormat:usingEncoding:decoder:)``, a convenience version of this method.
     @discardableResult

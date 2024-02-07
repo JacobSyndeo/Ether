@@ -8,7 +8,7 @@ import Foundation
 ///
 /// The fullURL variable on the enum type would then be a computed property that would generate the URLs `https://domain.com/home` and `https://domain.com/users/1`, respectively.
 ///
-/// For further convenience, both ``String`` and ``URL`` are automatically conformed to this, so you can pass them directly into functions expecting `Route`s.
+/// For further convenience, both ``Swift/String`` and ``Foundation/URL`` are automatically conformed to this, so you can pass them directly into functions expecting `Route`s.
 ///
 /// Typealiased to ``Ether/Ether/Route`` for better namespacing.
 ///
@@ -36,9 +36,10 @@ extension Ether {
 
 // Conform String to Route, so that we can use it.
 extension String: Ether.Route {
-    /// Returns a URL if `self` represents a valid URL string that conforms to [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt) or throws an `AFError`.
+    /// Returns a URL if `self` represents a valid URL string that conforms to [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt) or throws an error.
     ///
-    /// - throws: An ``Ether/Ether/Error/badURL(_:)`` if `self` is not a valid URL string.
+    /// - Returns: A URL, if `self` is a valid URL string.
+    /// - Throws: An ``Ether/Ether/Error/badURL(_:)`` if `self` is not a valid URL string.
     public var asURL: URL {
         get throws {
             guard let url = URL(string: self) else { throw Ether.Error.badURL(self) }
@@ -50,6 +51,7 @@ extension String: Ether.Route {
 // Conform URL to Route, so that we can use it.
 extension URL: Ether.Route {
     /// Returns self.
+    /// Only "throws" because it's required by the protocol.
     public var asURL: URL {
         get throws {
             return self
@@ -69,6 +71,7 @@ extension Ether.Route {
     ///   - parameters: A collection of key-value pairs to use as parameters. Defaults to empty.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: An instance of the `Decodable` type, decoded from the response recevied from the server.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/get(route:type:parameters:decoder:)``, the main version of this method.
     public func get<T>(type: T.Type,
@@ -88,6 +91,7 @@ extension Ether.Route {
     ///   - responseFormat: The `Decodable` type we expect to receive back. Ether will attempt to decode the HTTP response into this type. If no type is provided, the response struct will contain raw, undecoded data.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: A ``Ether/Ether/Response`` struct containing the HTTP response, as well as the decoded struct (or raw data if no struct was requested).
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/post(route:with:usingEncoding:responseFormat:decoder:)``, the main version of this method.
     @discardableResult
@@ -109,6 +113,7 @@ extension Ether.Route {
     ///   - responseFormat: The type of data to bundle in the response. Defaults to `DummyTypeUsedWhenNoDecodableIsRequested`.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/postMultipartForm(route:formItems:responseFormat:decoder:)``, the main version of this method.
     @discardableResult
@@ -132,6 +137,7 @@ extension Ether.Route {
     ///   - encoding: The encoding to use. Defaults to ``Ether/Ether/ParameterEncoding/urlQuery``.
     ///   - decoder: The `JSONDecoder` to use. You can create your own instance to customize its behavior before passing it in, if you'd like.
     /// - Returns: The response from the server, bundled in a ``Ether/Ether/Response``.
+    /// - Throws: An ``Ether/Ether/Error``, or any error thrown by the `URLSession` data task, if the request fails.
     ///
     /// Compare with ``Ether/Ether/request(route:method:headers:parameters:body:responseFormat:usingEncoding:decoder:)``, the main version of this method.
     @discardableResult
