@@ -6,9 +6,6 @@ import Foundation
 /// This lets you call simpler/safer versions of the core functions, by omitting the `type:` parameter at the call location.
 /// For example, ``EtherTypedRoute/get(parameters:decoder:)`` is only possible with `EtherTypedRoute`, which provides the type information to the function.
 public protocol EtherTypedRoute: EtherRoute {
-//    associatedtype SingularType: Decodable
-//    associatedtype PluralType: Decodable
-    
     /// The `Decodable` type that the route's result is expected to decode to.
     associatedtype DecodedType: Decodable
 }
