@@ -26,5 +26,12 @@ let package = Package(
         .target(name: "Ether",
                 swiftSettings: [.unsafeFlags(["-emit-extension-block-symbols"])]
                ),
+        .testTarget(
+            name: "EtherTests",
+            dependencies: ["Ether",
+                           .product(name: "Vapor", package: "vapor"),
+                          ],
+            resources: [.copy("Resources/你好.jpeg")
+                       ]),
     ]
 )

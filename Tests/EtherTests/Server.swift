@@ -25,7 +25,7 @@ class Server: ObservableObject {
             setupRoutes()
             
             do {
-                try app.start()
+                try await app.startup()
             } catch {
                 fatalError(error.localizedDescription)
             }
