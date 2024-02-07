@@ -18,7 +18,7 @@ let package = Package(
                  targets: ["Ether"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor", .upToNextMajor(from: "4.0.0")),
+//        .package(url: "https://github.com/vapor/vapor", .upToNextMajor(from: "4.0.0")),
         .package(url: "https://github.com/themomax/swift-docc-plugin", branch: "add-extended-types-flag")
     ],
     targets: [
@@ -26,12 +26,13 @@ let package = Package(
         .target(name: "Ether",
                 swiftSettings: [.unsafeFlags(["-emit-extension-block-symbols"])]
                ),
-        .testTarget(
-            name: "EtherTests",
-            dependencies: ["Ether",
-                           .product(name: "Vapor", package: "vapor"),
-                          ],
-            resources: [.copy("Resources/你好.jpeg")
-                       ]),
+        // Commented out, as Vapor currently interferes with our documentation builder…!
+//        .testTarget(
+//            name: "EtherTests",
+//            dependencies: ["Ether",
+//                           .product(name: "Vapor", package: "vapor"),
+//                          ],
+//            resources: [.copy("Resources/你好.jpeg")
+//                       ]),
     ]
 )
