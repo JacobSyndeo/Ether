@@ -4,7 +4,7 @@ What is Ether, and why should you use it?
 
 ## What is Ether?
 
-Ether is a delightful and easy to understand networking library for Swift. It's designed to be lightweight, easy to use, and easy to understand.
+Ether is a _delightful_ networking library for Swift. It's designed to be lightweight, easy to use, and easy to understand.
 
 ## Why another networking library?
 

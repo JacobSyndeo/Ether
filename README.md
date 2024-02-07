@@ -39,16 +39,11 @@ dependencies: [
     .package(url: "https://github.com/JacobSyndeo/Ether.git", from: "1.0.0")
 ]
 ```
-
-## Documentation
-
-For more information, check out the [documentation](https://ether.jacobpritchett.app/documentation/ether)!
-
 <!-- ## Demo
 
 You can find a demo app in the `Demo` directory. -->
 
-<!-- ## Examples
+## Examples
 
 Here are some examples of what Ether can do.
 
@@ -112,4 +107,17 @@ let result = try? await Ether.request(route: Routes.locations,
                                       showAlertIfFailed: .ifUserHasntMuted)
 ```
 
-Enjoy! -->
+Enjoy!
+
+## Documentation
+
+For more information, check out the [documentation](https://ether.jacobpritchett.app/documentation/ether)!
+
+## Support
+
+If you're anything less than delighted, or have any ideas on how to improve Ether, be sure to [open an issue](https://github.com/JacobSyndeo/Ether/issues), and I'll be sure to address it!
+
+## More
+
+If you like Ether, be sure to check out my other projects:
+- ✅ [GreenAlert](https://github.com/JacobSyndeo/GreenAlert), a really useful way to use `UIAlertController`, using extensions.

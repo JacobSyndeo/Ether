@@ -5,8 +5,7 @@ extension Ether {
     public struct Response<T> where T: Decodable {
         /// The response's data.
         /// Contains either a `Decodable` instance, or raw data.
-        ///
-        /// See also: Ether's Response Data type, ``Ether/Ether/Response/Data-swift.enum``, _not_ to be confused with `Foundation`'s `Data` type.
+        /// - SeeAlso: Ether's Response Data type, ``Ether/Ether/Response/Data-swift.enum``, _not_ to be confused with `Foundation`'s `Data` type.
         public var data: Data<T>
         
         // Keep this internal, since the syntax of "response.response" is really dumb and messy.
