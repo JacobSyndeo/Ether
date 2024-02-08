@@ -51,7 +51,7 @@ Let's say you want to go fetch an instance of `Blade` with ID `1`.
 
 Normally, you'd write some code looking like this:
 ```swift
-let url = URL(string: "https://xcapi.com/blades")! // Someone should make this API…
+let url = URL(string: "https://xcapi.com/blades/1")! // Someone should make this API…
 
 var request = URLRequest(url: url)
 request.httpMethod = "GET"
@@ -107,7 +107,8 @@ let result = try? await Ether.request(route: Routes.locations,
                                       showAlertIfFailed: .ifUserHasntMuted)
 ```
 
-Enjoy!
+So there ya go! Not bad, huh? 😎
+See the [Getting Started](#getting-started) section above to review installation instructions.
 
 ## Documentation
 
